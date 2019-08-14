@@ -39,8 +39,9 @@ function addStep(stepData, scheme_id) {
   return db('steps').insert({...stepData, scheme_id})
 }
 
-function update(changes, id) {
-  return db('schemes').where({id}).update(changes)
+async function update(changes, id) {
+  const updatedScheme = await db('schemes').where({id}).update(changes)
+  return await db('schemes').where({id})
 }
 
 function remove(id) {
