@@ -10,19 +10,14 @@ module.exports = {
   remove
 }
 
-async function find() {
-    const schemes = await db('schemes')
-    return schemes
-  }
+function find() {
+  const schemes = db('schemes')
+  return schemes
 }
 
-async function findById(id) {
-  const scheme = await db('scheme').where({id}).first()
-  if(scheme) {
-    return scheme
-  } else {
-    return null
-  }
+function findById(id) {
+  const scheme = db('schemes').where({id}).first()
+  return scheme
 }
 
 function findSteps(scheme_id) {
@@ -31,7 +26,7 @@ function findSteps(scheme_id) {
 
 function add(schemeData) {
   return db('schemes').insert(schemeData)
-})
+}
 
 function addStep(stepData, scheme_id) {
   return db('steps').insert({...stepData, scheme_id})
