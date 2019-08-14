@@ -44,6 +44,8 @@ async function update(changes, id) {
   return await db('schemes').where({id})
 }
 
-function remove(id) {
-  return db('schemes').where({id}).del()
+async function remove(id) {
+  const scheme = await db('schemes').where({id}).first()
+  await db('schemes').where({id}).del()
+  return scheme
 }
