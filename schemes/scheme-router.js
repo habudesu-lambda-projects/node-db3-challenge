@@ -23,7 +23,7 @@ router.get('/:id', async (req, res) => {
       res.status(404).json({ message: 'Could not find scheme with given id.' })
     }
   } catch (err) {
-    res.status(500).json({ message: 'Failed to get scheme', err: err});
+    res.status(500).json({ message: 'Failed to get scheme' });
   }
 });
 

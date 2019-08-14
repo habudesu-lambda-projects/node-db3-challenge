@@ -21,7 +21,12 @@ function findById(id) {
 }
 
 function findSteps(scheme_id) {
-  return db.select('scheme_name', 'step_number', 'instructions').from('schemes').where({scheme_id}).orderBy('step_number')
+  return db
+  .select('scheme_name', 'step_number', 'instructions')
+  .from('schemes')
+  .join('steps', 'schemes.id', 'steps.scheme_id')
+  .where('steps.scheme_id', '=', scheme_id)
+  .orderBy('step_number', 'asc')
 }
 
 function add(schemeData) {
