@@ -15,17 +15,15 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
-
   try {
     const scheme = await Schemes.findById(id);
-
     if (scheme) {
       res.json(scheme);
     } else {
       res.status(404).json({ message: 'Could not find scheme with given id.' })
     }
   } catch (err) {
-    res.status(500).json({ message: 'Failed to get schemes' });
+    res.status(500).json({ message: 'Failed to get scheme' });
   }
 });
 
@@ -58,7 +56,7 @@ router.post('/', async (req, res) => {
 
 router.post('/:id/steps', async (req, res) => {
   const stepData = req.body;
-  const { id } = req.params; 
+  const { id } = req.params;
 
   try {
     const scheme = await Schemes.findById(id);
